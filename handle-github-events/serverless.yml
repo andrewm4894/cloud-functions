@@ -1,0 +1,26 @@
+service: handle-github-events
+
+frameworkVersion: ">=1.2.0 <2.0.0"
+
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
+
+plugins:
+  - serverless-google-cloudfunctions
+  - serverless-dotenv-plugin
+
+provider:
+  name: google
+  runtime: python37
+  project: ${env:GCP_PROJECT_NAME}
+  region: ${env:GCP_REGION_NAME}
+  credentials: ${env:GCP_KEY_FILE}
+
+functions:
+  github_event:
+    handler: github_event
+    events:
+      - http: path
