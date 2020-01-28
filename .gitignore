@@ -170,3 +170,4 @@ admin.env
 .env
 _meta
 .serverless
+/handle-github-events/.serverless/
